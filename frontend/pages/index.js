@@ -124,14 +124,14 @@ export default function Home() {
           <strong>Quick start:</strong> Upload a document → Process it → Ask a question or
           generate a knowledge graph. Check the{' '}
           <a
-            href="http://localhost:8000/docs"
+            href={`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/docs`}
             target="_blank"
             rel="noreferrer"
             className="underline hover:text-white"
           >
             API docs
           </a>{' '}
-          at <code>localhost:8000/docs</code>.
+          at <code>{process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/docs</code>.
         </div>
       </main>
     </div>

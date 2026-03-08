@@ -35,7 +35,7 @@ export default function DocumentSummary() {
       const result = await summarizeDocument(selectedDocId, length);
       setSummary(result.summary);
     } catch (err) {
-      setError(err.response?.data?.detail || err.message || 'Summarisation failed.');
+      setError(err.response?.data?.detail || err.message || 'Summarization failed.');
     } finally {
       setSummarizing(false);
     }

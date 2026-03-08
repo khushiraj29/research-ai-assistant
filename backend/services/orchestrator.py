@@ -39,7 +39,7 @@ _SUMMARY_PROMPTS: Dict[str, str] = {
 
 class DocumentOrchestrator:
     """High-level orchestration layer that ties together extraction, embedding,
-    retrieval, summarisation, and knowledge-graph generation.
+    retrieval, summarization, and knowledge-graph generation.
 
     All heavy objects (models, indexes) are lazily initialised on first use so
     that the class can be instantiated cheaply inside the FastAPI app startup.
@@ -162,7 +162,7 @@ class DocumentOrchestrator:
         that no separate raw-text store is required.
 
         Args:
-            document_id: The document to summarise.
+            document_id: The document to summarize.
             length: One of ``"short"``, ``"medium"``, or ``"detailed"``.
 
         Returns:

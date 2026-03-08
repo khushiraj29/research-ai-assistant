@@ -223,7 +223,7 @@ async def summarize_document(request: SummarizeRequest) -> SummarizeResponse:
 
 
 # ---------------------------------------------------------------------------
-# Knowledge graph
+# Knowledge Graph
 # ---------------------------------------------------------------------------
 
 
