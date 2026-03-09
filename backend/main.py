@@ -1,6 +1,9 @@
 """FastAPI application entry point for the Research AI Assistant backend."""
 
 import logging
+import os
+from contextlib import asynccontextmanager
+from typing import AsyncGenerator
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -19,6 +22,27 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------
+# Lifecycle events (lifespan pattern replaces the deprecated on_event hooks)
+# ---------------------------------------------------------------------------
+
+
+@asynccontextmanager
+async def lifespan(application: FastAPI) -> AsyncGenerator[None, None]:
+    """Handle startup and shutdown tasks."""
+    # Startup: ensure required directories exist
+    os.makedirs(settings.UPLOAD_DIR, exist_ok=True)
+    os.makedirs(os.path.dirname(settings.FAISS_INDEX_PATH) or ".", exist_ok=True)
+    logger.info(
+        "Research AI Assistant backend started on %s:%s",
+        settings.BACKEND_HOST,
+        settings.BACKEND_PORT,
+    )
+    yield
+    # Shutdown
+    logger.info("Research AI Assistant backend shutting down.")
+
+
+# ---------------------------------------------------------------------------
 # Application
 # ---------------------------------------------------------------------------
 
@@ -32,6 +56,7 @@ app = FastAPI(
     version="0.1.0",
     docs_url="/docs",
     redoc_url="/redoc",
+    lifespan=lifespan,
 )
 
 # ---------------------------------------------------------------------------
@@ -51,31 +76,6 @@ app.add_middleware(
 # ---------------------------------------------------------------------------
 
 app.include_router(router, prefix="")
-
-# ---------------------------------------------------------------------------
-# Lifecycle events
-# ---------------------------------------------------------------------------
-
-
-@app.on_event("startup")
-async def on_startup() -> None:
-    """Perform startup initialisation."""
-    import os
-
-    os.makedirs(settings.UPLOAD_DIR, exist_ok=True)
-    os.makedirs(os.path.dirname(settings.FAISS_INDEX_PATH) or ".", exist_ok=True)
-    logger.info(
-        "Research AI Assistant backend started on %s:%s",
-        settings.BACKEND_HOST,
-        settings.BACKEND_PORT,
-    )
-
-
-@app.on_event("shutdown")
-async def on_shutdown() -> None:
-    """Perform graceful shutdown tasks."""
-    logger.info("Research AI Assistant backend shutting down.")
-
 
 # ---------------------------------------------------------------------------
 # Development entry point
