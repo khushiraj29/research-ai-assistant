@@ -1,0 +1,13 @@
+# Test dependencies for the Research AI Assistant backend.
+# Install with:  pip install -r requirements-test.txt
+# Then run:      pytest   (from the project root)
+
+pytest==8.3.5
+pytest-asyncio==0.25.3
+httpx==0.28.1
+numpy>=1.26.2
+# Runtime packages used directly by tests (not stubbed in conftest.py)
+fastapi>=0.104.1
+pydantic>=2.5.2
+python-dotenv>=1.0.0
+python-multipart>=0.0.6

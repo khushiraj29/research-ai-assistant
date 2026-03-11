@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* -------------------------------------------------------------------------
+   Base / reset
+   ---------------------------------------------------------------------- */
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-gray-50 text-gray-900 antialiased;
+  }
+
+  /* Dark-mode base */
+  .dark body {
+    @apply bg-gray-900 text-gray-100;
+  }
+
+  h1 { @apply text-3xl font-bold tracking-tight; }
+  h2 { @apply text-2xl font-semibold; }
+  h3 { @apply text-xl font-semibold; }
+}
+
+/* -------------------------------------------------------------------------
+   Reusable component classes
+   ---------------------------------------------------------------------- */
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-lg bg-primary-600 px-4 py-2
+           text-sm font-medium text-white shadow-sm transition
+           hover:bg-primary-700 focus:outline-none focus:ring-2
+           focus:ring-primary-500 focus:ring-offset-2
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 rounded-lg border border-gray-300
+           bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm
+           transition hover:bg-gray-50 focus:outline-none focus:ring-2
+           focus:ring-primary-500 focus:ring-offset-2
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .card {
+    @apply rounded-xl border border-gray-200 bg-white p-6 shadow-sm;
+  }
+
+  .dark .card {
+    @apply border-gray-700 bg-gray-800;
+  }
+
+  .input-field {
+    @apply w-full rounded-lg border border-gray-300 bg-white px-3 py-2
+           text-sm shadow-sm placeholder-gray-400
+           focus:border-primary-500 focus:outline-none focus:ring-1
+           focus:ring-primary-500;
+  }
+
+  .dark .input-field {
+    @apply border-gray-600 bg-gray-700 text-gray-100 placeholder-gray-500;
+  }
+
+  /* Chat bubbles */
+  .bubble-user {
+    @apply ml-auto max-w-prose rounded-2xl rounded-tr-sm bg-primary-600
+           px-4 py-3 text-sm text-white;
+  }
+
+  .bubble-ai {
+    @apply mr-auto max-w-prose rounded-2xl rounded-tl-sm bg-white
+           px-4 py-3 text-sm text-gray-800 shadow-sm border border-gray-200;
+  }
+
+  .dark .bubble-ai {
+    @apply bg-gray-800 text-gray-100 border-gray-700;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Scrollbar styling (webkit browsers)
+   ---------------------------------------------------------------------- */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { @apply bg-gray-100; }
+::-webkit-scrollbar-thumb { @apply rounded-full bg-gray-400; }
+.dark ::-webkit-scrollbar-track { @apply bg-gray-800; }
+.dark ::-webkit-scrollbar-thumb { @apply bg-gray-600; }

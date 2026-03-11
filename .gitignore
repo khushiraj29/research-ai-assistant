@@ -1,0 +1,80 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+ENV/
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.so
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+frontend/.next/
+frontend/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.yarn/
+.pnpm-debug.log*
+
+# FAISS index (binary, regenerated at runtime)
+database/*.index
+database/*_metadata.json
+
+# Uploads (user data, not committed)
+uploads/*
+!uploads/.gitkeep
+
+# Models cache (downloaded at runtime)
+models/*
+!models/.gitkeep
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-workspace
+
+# Docker
+.docker/
+
+# Logs
+*.log
+logs/
