@@ -109,8 +109,11 @@ python -m spacy download en_core_web_sm
 
 ### 5. Frontend setup
 
+> **Important:** run this from the **project root** (`research-ai-assistant/`), not from inside `backend/`.
+
 ```bash
-cd ../frontend
+cd ..            # return to project root if you are still inside backend/
+cd frontend
 npm install
 ```
 
@@ -132,11 +135,35 @@ Interactive API docs: `http://localhost:8000/docs`
 ### Start the frontend (in a separate terminal)
 
 ```bash
-cd frontend
+cd frontend       # run from project root
 npm run dev
 ```
 
 The UI will be available at `http://localhost:3000`.
+
+---
+
+## Running the Tests
+
+The backend ships with a full unit-test suite that runs without any ML models or external services.
+
+### 1. Install the lightweight test dependencies
+
+```bash
+# From the project root (research-ai-assistant/)
+pip install -r requirements-test.txt
+```
+
+This installs pytest, httpx, numpy, fastapi, pydantic, and python-dotenv. The `conftest.py` stubs out all heavy ML packages (LangChain, FAISS, sentence-transformers, spaCy, Neo4j) so you do **not** need to install `requirements.txt` first.
+
+### 2. Run the tests
+
+```bash
+# Always run pytest from the project root, NOT from inside backend/
+pytest
+```
+
+Expected output: all tests collected and passing, e.g. `118 passed in 0.6s`.
 
 ---
 
