@@ -158,8 +158,14 @@ This installs pytest, httpx, numpy, fastapi, pydantic, and python-dotenv. The `c
 
 ### 2. Run the tests
 
+You can run pytest from **either** the project root or from inside `backend/`:
+
 ```bash
-# Always run pytest from the project root, NOT from inside backend/
+# From the project root
+pytest
+
+# OR from inside the backend/ directory
+cd backend
 pytest
 ```
 
